@@ -1,0 +1,24 @@
+{
+  "name": "webpack2-template",
+  "version": "1.0.0",
+  "description": "A webpack2 template project.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack src/index.js build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuweilu/webpack2-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xuweilu/webpack2-template/issues"
+  },
+  "homepage": "https://github.com/xuweilu/webpack2-template#readme",
+  "devDependencies": {
+    "webpack": "^3.7.1"
+  }
+}
