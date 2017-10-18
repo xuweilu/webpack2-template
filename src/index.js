@@ -1,24 +1,27 @@
 import './style.css';
-import printMe from './print';
 import {cube} from './math.js';
+import _ from "lodash";
+// import Print from './print';
 
-function getComponent() {
-  return import(/* webpackChunkName: "lodash" */ "lodash").then((_) => {
-    let element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'webpack', '5 cubed is equal to ' + cube(5)], ' ');
-    return element;
-  }).catch((error) => ("An error occurred while loading the component"));
+function component() {
+  var element = document.createElement('div');
+  var btn = document.createElement('button');
 
+  element.innerHTML = _.join(['Hello', 'webpack', '5 cubed is equal to ' + cube(5)], ' ');
+  btn.innerHTML = "Click To See";
 
-  // var element = document.createElement('div');
-  // var btn = document.createElement('button');
-  //
-  // element.innerHTML = _.join(['Hello', 'webpack', '5 cubed is equal to ' + cube(5)], ' ');
-  // btn.innerHTML = "Click";
-  // btn.onclick = printMe;
-  // element.appendChild(btn);
-  //
-  // return element;
+  // btn.onclick = Print.bind(null, "Hello webpack!");
+  btn.onclick = (e) => {
+    import(/* webpackChunkName: "print" */ "./print").then(
+      (module) => {
+        var print = module.default;
+        print();
+      }
+    )
+  };
+  element.appendChild(btn);
+
+  return element;
 }
 
 // async function getComponent() {
@@ -28,8 +31,8 @@ function getComponent() {
 //   return element;
 // }
 
-// document.body.appendChild(component());
+document.body.appendChild(component());
 
-getComponent().then(component => {
-  document.body.appendChild(component);
-});
+// getComponent().then(component => {
+//   document.body.appendChild(component);
+// });

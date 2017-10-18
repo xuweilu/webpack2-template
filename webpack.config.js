@@ -2,16 +2,16 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/index.js"),
-    print: "./src/print.js"
+    main: "./src/index.js",
+    vendor: [
+      "lodash"
+    ]
   },
-
   output: {
-    filename: "[name].[hash].bundle.js",
+    filename: "[name].[chunkhash].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   module: {
@@ -42,8 +42,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.tmpl.html")
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
+    })
   ]
 
 

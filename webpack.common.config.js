@@ -5,12 +5,15 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/index.js")
-    // another: "./src/another-module.js"
+    app: path.resolve(__dirname, "src/index.js"),
+    vendor: [
+      "lodash"
+    ],
+    another: "./src/another-module.js"
   },
   output: {
-    filename: "[name].bundle.[hash].js",
-    chunkFilename: "[name].bundle.[hash].js",
+    filename: "[name].bundle.[chunkhash].js",
+    chunkFilename: "[name].bundle.[chunkhash].js",
     path: path.resolve(__dirname, "dist")
   },
   module: {
@@ -40,9 +43,14 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.tmpl.html")
+    }),
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
+    }),
+    // Note that order matters here. The 'vendor' instance of the CommonsChunkPlugin must be included prior to the 'runtime' instance.
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "runtime"
     })
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: "common"
-    // })
   ]
 };
