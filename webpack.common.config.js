@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -20,11 +21,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          "style-loader",
-          "css-loader"
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     "style-loader",
+      //     "css-loader"
+      //   ]
+      // },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
@@ -36,7 +44,8 @@ module.exports = {
         use: [
           "file-loader"
         ]
-      }
+      },
+
     ]
   },
   plugins: [
@@ -48,6 +57,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     }),
+    new ExtractTextPlugin("styles.css"),
     // Note that order matters here. The 'vendor' instance of the CommonsChunkPlugin must be included prior to the 'runtime' instance.
     new webpack.optimize.CommonsChunkPlugin({
       name: "runtime"
