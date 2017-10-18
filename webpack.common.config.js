@@ -5,11 +5,12 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "src/index.js"),
-    another: "./src/another-module.js"
+    app: path.resolve(__dirname, "src/index.js")
+    // another: "./src/another-module.js"
   },
   output: {
-    filename: "[name].[hash].bundle.js",
+    filename: "[name].bundle.[hash].js",
+    chunkFilename: "[name].bundle.[hash].js",
     path: path.resolve(__dirname, "dist")
   },
   module: {
@@ -39,9 +40,9 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.tmpl.html")
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "common"
     })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: "common"
+    // })
   ]
 };
