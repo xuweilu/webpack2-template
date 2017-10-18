@@ -7,13 +7,8 @@ module.exports = merge(common, {
   devServer: {
     contentBase: "./dist",
     hot: true,
-    colors: true,
     historyApiFallback: true,
     port: process.env.PORT || 8080,
     inline: true,
-  },
-  plugins: [
-    // new webpack.NamedModulesPlugin(),
-    // new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 });

@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const merge = require("webpack-merge");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const common = require("./webpack.common.config");
 
@@ -10,7 +11,7 @@ module.exports = merge(common, {
           "NODE_ENV": JSON.stringify("production")
         }
       }),
-      new webpack.optimize.OccurenceOrderPlugin(),
+      // new webpack.optimize.OccurenceOrderPlugin(),
       new UglifyJSPlugin({
         sourceMap: true
       })
