@@ -39,8 +39,7 @@ module.exports = {
         use: [
           "file-loader"
         ]
-      },
-
+      }
     ]
   },
   plugins: [
@@ -48,7 +47,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.tmpl.html")
     }),
-    new webpack.NamedModulesPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     new ExtractTextPlugin("styles.css"),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"

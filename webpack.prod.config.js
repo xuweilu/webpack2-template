@@ -17,7 +17,6 @@ module.exports = merge(common, {
         "NODE_ENV": JSON.stringify("production")
       }
     }),
-    // new webpack.optimize.OccurenceOrderPlugin(),
     new UglifyJSPlugin({
       sourceMap: true
     })
