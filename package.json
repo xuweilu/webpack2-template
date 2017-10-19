@@ -4,9 +4,9 @@
   "description": "A webpack2 template project.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --open --config webpack.dev.config.js",
-    "build": "set NODE_ENV=production & webpack --config webpack.production.config.js --progress --colors",
-    "build-debug": "set NODE_ENV=development & webpack --config webpack.dev.config.js --progress --colors"
+    "start": "webpack-dev-server --progress --config webpack.dev.config.js",
+    "build": "set NODE_ENV=production & webpack --config webpack.prod.config.js --progress --colors",
+    "build-dev": "set NODE_ENV=development & webpack --config webpack.dev.config.js --progress --colors"
   },
   "repository": {
     "type": "git",

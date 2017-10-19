@@ -12,11 +12,6 @@ module.exports = {
     ],
     another: "./src/another-module.js"
   },
-  output: {
-    filename: "[name].bundle.[chunkhash].js",
-    chunkFilename: "[name].bundle.[chunkhash].js",
-    path: path.resolve(__dirname, "dist")
-  },
   module: {
     rules: [
       {
@@ -53,14 +48,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src/index.tmpl.html")
     }),
-    new webpack.HashedModuleIdsPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new ExtractTextPlugin("styles.css"),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     }),
-    new ExtractTextPlugin("styles.css"),
     // Note that order matters here. The 'vendor' instance of the CommonsChunkPlugin must be included prior to the 'runtime' instance.
     new webpack.optimize.CommonsChunkPlugin({
       name: "runtime"
-    })
+    }),
   ]
 };

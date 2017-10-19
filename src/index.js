@@ -8,7 +8,7 @@ function component() {
   var btn = document.createElement('button');
 
   element.innerHTML = _.join(['Hello', 'webpack', '5 cubed is equal to ' + cube(5)], ' ');
-  btn.innerHTML = "Click To See";
+  btn.innerHTML = "Click";
 
   // btn.onclick = Print.bind(null, "Hello webpack!");
   btn.onclick = (e) => {
