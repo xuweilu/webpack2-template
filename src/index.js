@@ -1,14 +1,15 @@
 import './style.css';
 import {cube} from './math.js';
-import _ from "lodash";
 // import Print from './print';
+import {file, parse} from './globals';
 
 function component() {
   var element = document.createElement('div');
   var btn = document.createElement('button');
 
-  element.innerHTML = _.join(['Hello', 'webpack', '5 cubed is equal to ' + cube(5)], ' ');
+  element.innerHTML = join(['Hello', 'webpack', '5 cubed is equal to ' + cube(5)], ' ');
   btn.innerHTML = "Click";
+  parse();
 
   // btn.onclick = Print.bind(null, "Hello webpack!");
   btn.onclick = (e) => {

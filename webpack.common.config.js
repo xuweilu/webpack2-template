@@ -6,6 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
+    polyfills: "./src/polyfills.js",
     app: path.resolve(__dirname, "src/index.js"),
     vendor: [
       "lodash"
@@ -14,6 +15,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: require.resolve("./src/globals.js"),
+        use: "exports-loader?file,parse=helpers.parse"
+      },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -48,6 +53,10 @@ module.exports = {
       template: path.resolve(__dirname, "src/index.tmpl.html")
     }),
     new webpack.HashedModuleIdsPlugin(),
+    new webpack.ProvidePlugin({
+      // lodash: 'lodash'
+      join: ["lodash", "join"]
+    }),
     new ExtractTextPlugin("styles.css"),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
