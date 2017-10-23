@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { Button, ButtonToolbar } from "react-bootstrap";
 
 class App extends Component {
   render() {
     return (
-      <h1>Hello Wrold!!!</h1>
+      <ButtonToolbar>
+        <Button bsStyle="primary" bsSize="large" active>Primary button</Button>
+        <Button bsSize="large" active>Button</Button>
+      </ButtonToolbar>
     );
   }
 }
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <App/>,
+  document.getElementById("root"),
 );

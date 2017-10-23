@@ -15,12 +15,20 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        enforce: "pre",
+        loader: "eslint-loader",
+        include: path.resolve(__dirname, "src"),
+        exclude: /node_modules/
+      },
+      {
         test: require.resolve("./libs/globals.js"),
         use: "exports-loader?file,parse=helpers.parse"
       },
       {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, "src"),
+        exclude: /node_modules/,
         loader: "babel-loader"
       },
       {
@@ -58,14 +66,14 @@ module.exports = {
     }),
     new webpack.HashedModuleIdsPlugin(),
     new webpack.ProvidePlugin({
-      // lodash: 'lodash'
+      // lodash: "lodash"
       join: ["lodash", "join"]
     }),
     new ExtractTextPlugin("styles.css"),
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor"
     }),
-    // Note that order matters here. The 'vendor' instance of the CommonsChunkPlugin must be included prior to the 'runtime' instance.
+    // Note that order matters here. The "vendor" instance of the CommonsChunkPlugin must be included prior to the "runtime" instance.
     new webpack.optimize.CommonsChunkPlugin({
       name: "runtime"
     }),
