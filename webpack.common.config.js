@@ -9,15 +9,19 @@ module.exports = {
     polyfills: "./src/polyfills.js",
     app: path.resolve(__dirname, "src/index.js"),
     vendor: [
-      "lodash"
-    ],
-    another: "./src/another-module.js"
+      "react", "react-dom"
+    ]
   },
   module: {
     rules: [
       {
-        test: require.resolve("./src/globals.js"),
+        test: require.resolve("./libs/globals.js"),
         use: "exports-loader?file,parse=helpers.parse"
+      },
+      {
+        test: /\.jsx?$/,
+        include: path.resolve(__dirname, "src"),
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,
