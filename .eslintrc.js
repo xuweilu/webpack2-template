@@ -25,7 +25,7 @@ module.exports = {
       "warn"
     ],
     "max-len":[
-      "error",
+      "warn",
       150
     ],
     "linebreak-style": [
