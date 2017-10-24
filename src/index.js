@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import { Button, ButtonToolbar } from "react-bootstrap";
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import Leaders from "./components/Leaders";
 
-class App extends Component {
-  render() {
-    return (
-      <ButtonToolbar>
-        <Button bsStyle="primary" bsSize="large" active>Primary button</Button>
-        <Button bsSize="large" active>Button</Button>
-      </ButtonToolbar>
-    );
-  }
-}
-
-ReactDOM.render(
-  <App/>,
-  document.getElementById("root"),
+render(
+  (
+    <Provider store={store}>
+      <Router>
+        <div id="root">
+          <h1>App</h1>
+          <Route path="/" component={Leaders}/>
+        </div>
+      </Router>
+    </Provider>
+  ), document.getElementById("app"),
 );

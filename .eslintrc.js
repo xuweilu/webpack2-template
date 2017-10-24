@@ -18,9 +18,15 @@ module.exports = {
     "react"
   ],
   "rules": {
-    "indent": [
+    "react/prop-types": [
+      "warn"
+    ],
+    "no-unused-vars":[
+      "warn"
+    ],
+    "max-len":[
       "error",
-      2
+      150
     ],
     "linebreak-style": [
       "off",

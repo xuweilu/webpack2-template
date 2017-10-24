@@ -19,7 +19,10 @@ module.exports = {
         enforce: "pre",
         loader: "eslint-loader",
         include: path.resolve(__dirname, "src"),
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        options: {
+          fix: true,
+        }
       },
       {
         test: require.resolve("./libs/globals.js"),
