@@ -5,8 +5,7 @@ const common = require("./webpack.common.config");
 
 module.exports = merge(common, {
   output: {
-    filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   devtool: "inline-source-map",
@@ -15,8 +14,7 @@ module.exports = merge(common, {
       "process.env": {
         "NODE_ENV": JSON.stringify("development")
       }
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   devServer: {
     contentBase: "./dist",

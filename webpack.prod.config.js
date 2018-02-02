@@ -6,8 +6,7 @@ const common = require("./webpack.common.config");
 
 module.exports = merge(common, {
   output: {
-    filename: "[name].bundle.[chunkhash].js",
-    chunkFilename: "[name].bundle.[chunkhash].js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   devtool: "source-map",
